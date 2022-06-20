@@ -11,7 +11,7 @@ export default class extends BaseSeeder {
         company_id: '19.653.482/0001-07',
         phone: '(79) 99587-2937',
         address: 'Rua do fogo, 456, Diamantina, Minas Gerais',
-        supervisor: 'João Souza'
+        supervisor: 'João Souza 1'
       },
 
     ])
