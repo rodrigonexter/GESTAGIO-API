@@ -31,4 +31,8 @@ Route.group(() => {
   Route.resource('coordinators', 'CoordinatorsController').apiOnly()
   // Routes of Company
   Route.resource('companies', 'CompaniesController').apiOnly()
+  // Routes of Student
+  Route.resource('students', 'StudentsController').apiOnly()
+  // Routes of Student
+  Route.resource('teachers', 'TeachersController').apiOnly()
 })
