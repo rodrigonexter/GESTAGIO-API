@@ -31,7 +31,7 @@ export default class Internship extends BaseModel {
   public renovattion3: Date
 
   @column()
-  public weekHours: Number
+  public week_hours: Number
 
   @column()
   public wage: Number
@@ -43,19 +43,19 @@ export default class Internship extends BaseModel {
   public category: String
 
   @column()
-  public activiesPlan: String
+  public activies_plan: String
 
   @column()
-  public semiannualReport1: String
+  public semiannual_report1: String
 
   @column()
-  public semiannualReport2: String
+  public semiannual_report2: String
 
   @column()
-  public semiannualReport3: String
+  public semiannual_report3: String
 
   @column()
-  public semiannualReport4: String
+  public semiannual_report4: String
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
