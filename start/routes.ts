@@ -28,7 +28,7 @@ Route.group(() => {
   // Routes of Course
   Route.resource('courses', 'CoursesController').apiOnly()
   // Routes of Coordinator
-  Route.resource('coordinators', 'CoordinatorsController').apiOnly()
+  Route.resource('users', 'UsersController').apiOnly()
   // Routes of Company
   Route.resource('companies', 'CompaniesController').apiOnly()
   // Routes of Student
@@ -37,4 +37,16 @@ Route.group(() => {
   Route.resource('teachers', 'TeachersController').apiOnly()
   // Routes of Internships
   Route.resource('internships', 'InternshipsController').apiOnly()
+})
+
+Route.post('login', async ({ auth, request, response }) => {
+  const email = request.input('email')
+  const password = request.input('password')
+
+  try {
+    const token = await auth.use('api').attempt(email, password)
+    return token
+  } catch {
+    return response.unauthorized('Usuário ou Senha inválidos')
+  }
 })
