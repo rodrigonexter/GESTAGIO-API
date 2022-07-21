@@ -10,8 +10,15 @@ export default class extends BaseSeeder {
         name: 'JBS',
         company_id: '19.653.482/0001-07',
         phone: '(79) 99587-2937',
+        email: 'jbs@gmail.com',
         address: 'Rua do fogo, 456, Diamantina, Minas Gerais',
-        supervisor: 'João Souza 1',
+      },
+      {
+        name: 'GOOGLE',
+        company_id: '19.653.482/0001-07',
+        phone: '(79) 99587-2937',
+        email: 'jbs@gmail.com',
+        address: 'Rua do fogo, 456, Diamantina, Minas Gerais',
       },
     ])
   }

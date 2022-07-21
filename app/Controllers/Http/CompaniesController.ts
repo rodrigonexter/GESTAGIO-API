@@ -32,10 +32,10 @@ export default class CompaniesController {
     // updating data
     // name, companyId, phone, address, supervisor
     company.name = request.input('name')
-    company.companyId = request.input('companyId')
+    company.company_id = request.input('company_id')
     company.phone = request.input('phone')
+    company.email = request.input('email')
     company.address = request.input('address')
-    company.supervisor = request.input('supervisor')
     // save in database
     await company.save()
 

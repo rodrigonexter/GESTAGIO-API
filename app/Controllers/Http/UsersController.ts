@@ -4,7 +4,7 @@ import User from '../../Models/User'
 //email type password
 export default class UsersController {
   public async index() {
-    const user = await User.all()
+    const user = await User.query().where('id', '>', 1)
     return user
   }
 

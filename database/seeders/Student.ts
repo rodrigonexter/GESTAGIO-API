@@ -2,7 +2,7 @@ import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import Student from 'App/Models/Student'
 
 export default class extends BaseSeeder {
-  public async run () {
+  public async run() {
     // Write your database queries inside the run method
     // name, email, phone, cpf, address, student_id
     await Student.createMany([
