@@ -1,10 +1,16 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Internship from '../../Models/Internship'
+import Internship from 'App/Models/Internship'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class InternshipsController {
   public async index() {
-    const internship = await Internship.all()
-    return internship
+    // const internships = await Internship.all()
+    const internships = await Database.from('students')
+    .join('internships','students.id','=','internships.student_id')
+    .join('companies','companies.id','=','internships.company_id')
+    .select('internships.id').select('students.name').select('internships.status').select('internships.activities_plan').select('internships.report').select('companies.name as company_name')
+    console.log(internships)
+    return internships
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -28,28 +34,25 @@ export default class InternshipsController {
 
   public async update({ request, params }: HttpContextContract) {
     //searching in database by id
-    // student_id, company_id, company_supervisor, initial_date, end_date, renovattion1, renovattion2, renovattion3, week_hours, wage, assistance, category, activies_plan, semiannual_report1, semiannual_report2, semiannual_report3, semiannual_report4
-
     const internship = await Internship.find(params.id)
     // updating data
+
     internship.student_id = request.input('student_id')
     internship.company_id = request.input('company_id')
-    internship.company_supervisor = request.input('company_supervisor')
+    internship.teacher_id = request.input('teacher_id')
+    internship.supervisor = request.input('supervisor')
     internship.initial_date = request.input('initial_date')
-    internship.end_date = request.input('end_date')
-    internship.renovattion1 = request.input('renovattion1')
-    internship.renovattion2 = request.input('renovattion2')
-    internship.renovattion3 = request.input('renovattion3')
-    internship.week_hours = request.input('week_hours')
+    internship.final_date = request.input('final_date')
     internship.wage = request.input('wage')
-    internship.assistance = request.input('assistance')
+    internship.aid = request.input('aid')
+    internship.health_insurance_code = request.input('health_insurance_code')
+    internship.health_insurance_company = request.input('health_insurance_company')
+    internship.weekly_working_hours = request.input('weekly_working_hours')
     internship.category = request.input('category')
-    internship.activies_plan = request.input('activies_plan')
-    internship.semiannual_report1 = request.input('semiannual_report1')
-    internship.semiannual_report2 = request.input('semiannual_report2')
-    internship.semiannual_report3 = request.input('semiannual_report3')
-    internship.semiannual_report4 = request.input('semiannual_report4')
-    internship.name = request.input('name')
+    internship.modality = request.input('modality')
+    internship.activities_plan = request.input('activities_plan')
+    internship.report = request.input('report')
+    internship.status = request.input('status')
 
     // save in database
     await internship.save()

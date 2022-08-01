@@ -1,29 +1,29 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+
 import Internship from '../../app/Models/Internship'
 
 export default class extends BaseSeeder {
   public async run() {
-    // Write your database queries inside the run method
-    // student_id, company_id, company_supervisor, initialDate, endDate, renovattion1, renovattion2, renovattion3, weekHours, wage, assistance, category, activiesPlan, semiannualReport
+    // student_id, company_id, teacher_id, supervisor, initial_date, final_date, wage, aid, health_insurance_code, health_insurance_company, weekly_working_hours, category, modality, activities_plan, report, status
+
     await Internship.createMany([
       {
         student_id: 1,
         company_id: 1,
-        company_supervisor: 'José Silva',
+        teacher_id: 1,
+        supervisor: 'Joao Souza',
         initial_date: '2021-12-12',
-        end_date: '2021-12-12',
-        renovattion1: '2021-12-12',
-        renovattion2: '2021-12-12',
-        renovattion3: '2021-12-12',
-        week_hours: 30,
+        final_date: '2021-12-12',
         wage: 600,
-        assistance: 250,
-        category: 'Remoto',
-        activies_plan: '#',
-        semiannual_report1: '#',
-        semiannual_report2: '#',
-        semiannual_report3: '#',
-        semiannual_report4: '#',
+        aid: 200,
+        health_insurance_code: '3748374837',
+        health_insurance_company: 'BR Seguros',
+        weekly_working_hours: 20,
+        category: 'Estágio Obrigatório',
+        modality: 'Presencial',
+        activities_plan: 'Pendente',
+        report: 'Enviado',
+        status: 'Em andamento',
       },
     ])
   }

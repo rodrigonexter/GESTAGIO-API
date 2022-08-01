@@ -1,10 +1,10 @@
-import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon'
 
 export default class Internship extends BaseModel {
   @column({ isPrimary: true })
   public id: number
-  // student_id, company_id, company_supervisor, initialDate, endDate, renovattion1, renovattion2, renovattion3, weekHours, wage, assistance, category, activiesPlan, semiannualReport
+  // student_id, company_id, teacher_id, supervisor, initial_date, final_date, wage, aid, health_insurance_code, health_insurance_company, weekly_working_hours, category, modality, activities_plan, report, status
 
   @column()
   public student_id: Number
@@ -13,49 +13,46 @@ export default class Internship extends BaseModel {
   public company_id: Number
 
   @column()
-  public company_supervisor: String
+  public teacher_id: Number
 
   @column()
-  public initialDate: Date
+  public supervisor: String
 
-  @column()
-  public endDate: Date
+  @column.date()
+  public initial_date: DateTime
 
-  @column()
-  public renovattion1: Date
-
-  @column()
-  public renovattion2: Date
-
-  @column()
-  public renovattion3: Date
-
-  @column()
-  public week_hours: Number
+  @column.date()
+  public final_date: DateTime
 
   @column()
   public wage: Number
 
   @column()
-  public assistance: Number
+  public aid: Number
+
+  @column()
+  public health_insurance_code: String
+
+  @column()
+  public health_insurance_company: String
+
+  @column()
+  public weekly_working_hours: Number
 
   @column()
   public category: String
 
   @column()
-  public activies_plan: String
+  public modality: String
 
   @column()
-  public semiannual_report1: String
+  public activities_plan: String
 
   @column()
-  public semiannual_report2: String
+  public report: String
 
   @column()
-  public semiannual_report3: String
-
-  @column()
-  public semiannual_report4: String
+  public status: String
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

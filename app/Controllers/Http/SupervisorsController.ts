@@ -22,9 +22,7 @@ export default class SupervisorsController {
   public async show({ params }: HttpContextContract) {
     const supervisor = await Supervisor.query().where('company_id', '=', params.id)
 
-    return {
-      data: supervisor,
-    }
+    return supervisor
   }
 
   public async update({ request, params }: HttpContextContract) {
