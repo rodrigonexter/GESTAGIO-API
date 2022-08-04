@@ -37,8 +37,10 @@ Route.group(() => {
   Route.resource('teachers', 'TeachersController').apiOnly()
   // Routes of Internships
   Route.resource('internships', 'InternshipsController').apiOnly()
-  //roites of supervisors
+  //Routes of supervisors
   Route.resource('supervisors', 'SupervisorsController').apiOnly()
+  //Routes of periods
+  Route.resource('periods', 'PeriodsController').apiOnly()
 })
 
 Route.post('login', async ({ auth, request, response }) => {

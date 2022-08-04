@@ -12,7 +12,7 @@ export default class extends BaseSeeder {
         company_id: 1,
         teacher_id: 1,
         supervisor: 'Joao Souza',
-        initial_date: '2021-12-12',
+        initial_date: '2021-12-13', //yyyy-mm-dd
         final_date: '2021-12-12',
         wage: 600,
         aid: 200,

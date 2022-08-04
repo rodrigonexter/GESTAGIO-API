@@ -1,14 +1,13 @@
-import { DateTime } from 'luxon';
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'internships'
+  protected tableName = 'periods'
 
-  public async up() {
+  public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       // student_id, company_id, teacher_id, supervisor, initial_date, final_date, wage, aid, health_insurance_code, health_insurance_company, weekly_working_hours, category, modality, activities_plan, report, status
-
+      table.integer('internship_id').unsigned().references('students.id').onDelete('CASCADE')
       table.integer('student_id').unsigned().references('students.id').onDelete('CASCADE')
       table.integer('company_id').unsigned().references('companies.id').onDelete('CASCADE')
       table.integer('teacher_id').unsigned().references('teachers.id').onDelete('CASCADE')
@@ -34,7 +33,7 @@ export default class extends BaseSchema {
     })
   }
 
-  public async down() {
+  public async down () {
     this.schema.dropTable(this.tableName)
   }
 }
