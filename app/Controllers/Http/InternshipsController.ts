@@ -4,12 +4,14 @@ import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class InternshipsController {
   public async index() {
-    // const internships = await Internship.all()
     const internships = await Database.from('students')
     .join('internships', 'students.id', '=', 'internships.student_id')
     .join('companies','companies.id','=','internships.company_id')
     .join('teachers','teachers.id','=','internships.teacher_id')
+    .join('courses','students.course_id','=','courses.id')
     .select('internships.id')
+    .select('courses.id as course_id')
+    .select('courses.name as course_name')
     .select('students.id as student_id')
     .select('students.name as student_name')
     .select('companies.id as company_id')
@@ -30,26 +32,8 @@ export default class InternshipsController {
     .select('internships.activities_plan')
     .select('internships.report')
 
-    // .join('internships','students.id','=','internships.student_id')
-    // .join('companies','companies.id','=','internships.company_id')
-
     console.log(internships)
     return internships
-
-  /* student_id,
-   company_id,
-   teacher_id,
-   supervisor,
-   initial_date,
-   final_date,
-   wage,
-   aid,
-   health_insurance_code,
-   health_insurance_company,
-   weekly_working_hours,
-   category,
-   modality,
-    activities_plan, report, status */
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -65,10 +49,37 @@ export default class InternshipsController {
   }
 
   public async show({ params }: HttpContextContract) {
-    const internship = await Internship.find(params.id)
-    return {
-      data: internship,
-    }
+    const internships = await Database.from('students')
+    .where('internships.id', params.id)
+    .join('internships', 'students.id', '=', 'internships.student_id')
+    .join('companies','companies.id','=','internships.company_id')
+    .join('teachers','teachers.id','=','internships.teacher_id')
+    .join('courses','students.course_id','=','courses.id')
+    .select('internships.id')
+    .select('courses.id as course_id')
+    .select('courses.name as course_name')
+    .select('students.id as student_id')
+    .select('students.name as student_name')
+    .select('companies.id as company_id')
+    .select('companies.name as company_name')
+    .select('teachers.id as teacher_id')
+    .select('teachers.name as teacher_name')
+    .select('internships.supervisor')
+    .select('internships.initial_date')
+    .select('internships.final_date')
+    .select('internships.wage')
+    .select('internships.aid')
+    .select('internships.health_insurance_code')
+    .select('internships.health_insurance_company')
+    .select('internships.weekly_working_hours')
+    .select('internships.category')
+    .select('internships.modality')
+    .select('internships.status')
+    .select('internships.activities_plan')
+    .select('internships.report')
+
+    console.log(internships)
+    return internships
   }
 
   public async update({ request, params }: HttpContextContract) {

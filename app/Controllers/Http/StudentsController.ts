@@ -1,9 +1,21 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Student from '../../Models/Student'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class StudentsController {
   public async index() {
-    const student = await Student.all()
+    const student = await Database.from('students')
+    .join('courses', 'students.course_id', '=', 'courses.id')
+    .select('students.id as id')
+    .select('students.name as name')
+    .select('students.phone as phone')
+    .select('students.cpf as cpf')
+    .select('students.address as address')
+    .select('students.email as email')
+    .select('students.student_id as student_id')
+    .select('courses.id as course_id')
+    .select('courses.name as course_name')
+
     return student
   }
 
@@ -21,9 +33,7 @@ export default class StudentsController {
 
   public async show({ params }: HttpContextContract) {
     const student = await Student.find(params.id)
-    return {
-      data: student,
-    }
+    return student
   }
 
   public async update({ request, params }: HttpContextContract) {
@@ -33,6 +43,7 @@ export default class StudentsController {
 
     // name, email, phone, cpf, address, student_id
     student.name = request.input('name')
+    student.course_id = request.input('course_id')
     student.email = request.input('email')
     student.phone = request.input('phone')
     student.cpf = request.input('cpf')

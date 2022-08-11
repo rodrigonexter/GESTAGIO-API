@@ -7,6 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       // name, email, phone, cpf, address, student_id
+      table.integer('course_id').unsigned().references('courses.id')
       table.string('name').notNullable()
       table.string('email').notNullable()
       table.string('phone').notNullable()

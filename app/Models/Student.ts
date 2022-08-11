@@ -10,6 +10,9 @@ export default class Student extends BaseModel {
   public name: String
 
   @column()
+  public course_id: number
+
+  @column()
   public email: String
 
   @column()

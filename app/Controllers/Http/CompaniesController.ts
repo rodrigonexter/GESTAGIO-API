@@ -21,9 +21,7 @@ export default class CompaniesController {
 
   public async show({ params }: HttpContextContract) {
     const company = await Company.find(params.id)
-    return {
-      data: company,
-    }
+    return company
   }
 
   public async update({ request, params }: HttpContextContract) {

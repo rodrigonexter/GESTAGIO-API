@@ -1,13 +1,40 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 import Period from 'App/Models/Period'
 
 export default class PeriodsController {
   public async index() {
-    const periods = await Period.all()
+    const internships = await Database.from('students')
+    .join('internships', 'students.id', '=', 'internships.student_id')
+    .join('companies','companies.id','=','internships.company_id')
+    .join('teachers','teachers.id','=','internships.teacher_id')
+    .join('periods','periods.internship_id', '=', 'internships.id')
+    .select('periods.id')
+    .select('periods.internship_id')
+    .select('students.id as student_id')
+    .select('students.name as student_name')
+    .select('companies.id as company_id')
+    .select('companies.name as company_name')
+    .select('teachers.id as teacher_id')
+    .select('teachers.name as teacher_name')
+    .select('internships.supervisor')
+    .select('internships.initial_date')
+    .select('internships.final_date')
+    .select('internships.wage')
+    .select('internships.aid')
+    .select('internships.health_insurance_code')
+    .select('internships.health_insurance_company')
+    .select('internships.weekly_working_hours')
+    .select('internships.category')
+    .select('internships.modality')
+    .select('internships.status')
+    .select('internships.activities_plan')
+    .select('internships.report')
 
-    console.log(periods)
-    return periods
+
+    console.log(internships)
+    return internships
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -23,10 +50,40 @@ export default class PeriodsController {
   }
 
   public async show({ params }: HttpContextContract) {
-    const period = await Period.find(params.id)
-    return {
-      data: period,
-    }
+    const periods = await Database.from('internships')
+    .where('periods.internship_id', params.id)
+    .join('periods', 'internships.id', '=', 'periods.internship_id')
+    .join('students', 'students.id', '=', 'periods.student_id')
+    .join('companies', 'companies.id', '=', 'periods.company_id')
+    .join('teachers', 'teachers.id', '=', 'periods.teacher_id')
+    .select('periods.id as id')
+    .select('periods.internship_id')
+    .select('periods.student_id as student_id')
+    .select('students.name as student_name')
+    .select('periods.company_id as company_id')
+    .select('companies.company_id as company_id')
+    .select('companies.name as company_name')
+    .select('companies.email as company_email')
+    .select('companies.phone as company_phone')
+    .select('companies.address as company_address')
+    .select('teachers.id as teacher_id')
+    .select('teachers.name as teacher_name')
+    .select('periods.supervisor')
+    .select('periods.initial_date')
+    .select('periods.final_date')
+    .select('periods.wage')
+    .select('periods.aid')
+    .select('periods.health_insurance_code')
+    .select('periods.health_insurance_company')
+    .select('periods.weekly_working_hours')
+    .select('periods.category')
+    .select('periods.modality')
+    .select('periods.status')
+    .select('periods.activities_plan')
+    .select('periods.report')
+
+    console.log(periods)
+    return periods
   }
 
   public async update({ request, params }: HttpContextContract) {

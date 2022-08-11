@@ -8,6 +8,7 @@ export default class extends BaseSeeder {
     await Student.createMany([
       {
         name: 'Rodrigo Souza Campos',
+        course_id: 1,
         email: 'rodrigo@gmail.com',
         phone: '(38) 99893-8650)',
         cpf: '12390742735',
@@ -15,7 +16,8 @@ export default class extends BaseSeeder {
         student_id: '20162016030',
       },
       {
-        name: 'Frederico Bouça Piteira',
+        name: 'Frederico José',
+        course_id: 1,
         email: 'rodrigo@gmail.com',
         phone: '(38) 99893-8650)',
         cpf: '12390742735',
@@ -23,15 +25,8 @@ export default class extends BaseSeeder {
         student_id: '20162016030',
       },
       {
-        name: 'Sol Lacerda Mondragão',
-        email: 'rodrigo@gmail.com',
-        phone: '(38) 99893-8650)',
-        cpf: '12390742735',
-        address: 'Teófilo Otoni, MG',
-        student_id: '20162016030',
-      },
-      {
-        name: 'Celeste Vila-Chã Nascimento',
+        name: 'Maria Nunes',
+        course_id: 1,
         email: 'rodrigo@gmail.com',
         phone: '(38) 99893-8650)',
         cpf: '12390742735',

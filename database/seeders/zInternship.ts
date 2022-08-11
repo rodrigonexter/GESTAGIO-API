@@ -12,8 +12,27 @@ export default class extends BaseSeeder {
         company_id: 1,
         teacher_id: 1,
         supervisor: 'Joao Souza',
-        initial_date: '2021-12-13', //yyyy-mm-dd
-        final_date: '2021-12-12',
+        initial_date: '2023-12-13', //yyyy-mm-dd
+        final_date: '2024-12-12',
+        wage: 600,
+        aid: 200,
+        health_insurance_code: '3748374837',
+        health_insurance_company: 'BR Seguros',
+        weekly_working_hours: 20,
+        category: 'Estágio Obrigatório',
+        modality: 'Presencial',
+        activities_plan: 'Pendente',
+        report: 'Enviado',
+        status: 'Em andamento',
+      },
+
+      {
+        student_id: 2,
+        company_id: 2,
+        teacher_id: 2,
+        supervisor: 'Joao Souza',
+        initial_date: '2022-12-13', //yyyy-mm-dd
+        final_date: '2023-12-12',
         wage: 600,
         aid: 200,
         health_insurance_code: '3748374837',
