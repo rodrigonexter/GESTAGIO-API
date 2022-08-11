@@ -1,3 +1,2 @@
 web: node build/server.js
-release: yarn dev migration:run --force
-start
+release: node build --ignore-ts-errors/ace migration:run --force
