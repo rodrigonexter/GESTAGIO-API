@@ -1,10 +1,13 @@
 {
   "name": "gestagio-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.14.2"
+  },
   "private": true,
   "scripts": {
     "dev": "node ace serve --watch",
-    "build": "node ace build --production",
+    "build": "node ace serve --watch",
     "start": "ENV_SILENT = true node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
