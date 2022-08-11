@@ -31,8 +31,8 @@ export default class extends BaseSeeder {
         company_id: 2,
         teacher_id: 2,
         supervisor: 'Joao Souza',
-        initial_date: '2022-12-13', //yyyy-mm-dd
-        final_date: '2023-12-12',
+        initial_date: 2022-12-13, //yyyy-mm-dd
+        final_date: 2023-12-12,
         wage: 600,
         aid: 200,
         health_insurance_code: '3748374837',
