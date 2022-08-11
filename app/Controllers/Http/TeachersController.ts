@@ -32,10 +32,10 @@ export default class TeachersController {
     // updating data
 
     // name, email, phone, cpf, address, teacher_id
+
     teacher.name = request.input('name')
     teacher.email = request.input('email')
     teacher.phone = request.input('phone')
-    teacher.cpf = request.input('cpf')
     teacher.address = request.input('address')
     teacher.teacher_id = request.input('teacher_id')
     // save in database
