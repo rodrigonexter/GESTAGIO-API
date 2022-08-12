@@ -1,0 +1,112 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const Internship_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/Internship"));
+const Database_1 = __importDefault(global[Symbol.for('ioc.use')]("Adonis/Lucid/Database"));
+class InternshipsController {
+    async index() {
+        const internships = await Database_1.default.from('students')
+            .join('internships', 'students.id', '=', 'internships.student_id')
+            .join('companies', 'companies.id', '=', 'internships.company_id')
+            .join('teachers', 'teachers.id', '=', 'internships.teacher_id')
+            .join('courses', 'students.course_id', '=', 'courses.id')
+            .select('internships.id')
+            .select('courses.id as course_id')
+            .select('courses.name as course_name')
+            .select('students.id as student_id')
+            .select('students.name as student_name')
+            .select('companies.id as company_id')
+            .select('companies.name as company_name')
+            .select('teachers.id as teacher_id')
+            .select('teachers.name as teacher_name')
+            .select('internships.supervisor')
+            .select('internships.initial_date')
+            .select('internships.final_date')
+            .select('internships.wage')
+            .select('internships.aid')
+            .select('internships.health_insurance_code')
+            .select('internships.health_insurance_company')
+            .select('internships.weekly_working_hours')
+            .select('internships.category')
+            .select('internships.modality')
+            .select('internships.status')
+            .select('internships.activities_plan')
+            .select('internships.report');
+        console.log(internships);
+        return internships;
+    }
+    async store({ request, response }) {
+        const body = request.body();
+        const internship = await Internship_1.default.create(body);
+        response.status(201);
+        return {
+            message: 'Internship created!',
+            data: internship,
+        };
+    }
+    async show({ params }) {
+        const internships = await Database_1.default.from('students')
+            .where('internships.id', params.id)
+            .join('internships', 'students.id', '=', 'internships.student_id')
+            .join('companies', 'companies.id', '=', 'internships.company_id')
+            .join('teachers', 'teachers.id', '=', 'internships.teacher_id')
+            .join('courses', 'students.course_id', '=', 'courses.id')
+            .select('internships.id')
+            .select('courses.id as course_id')
+            .select('courses.name as course_name')
+            .select('students.id as student_id')
+            .select('students.name as student_name')
+            .select('companies.id as company_id')
+            .select('companies.name as company_name')
+            .select('teachers.id as teacher_id')
+            .select('teachers.name as teacher_name')
+            .select('internships.supervisor')
+            .select('internships.initial_date')
+            .select('internships.final_date')
+            .select('internships.wage')
+            .select('internships.aid')
+            .select('internships.health_insurance_code')
+            .select('internships.health_insurance_company')
+            .select('internships.weekly_working_hours')
+            .select('internships.category')
+            .select('internships.modality')
+            .select('internships.status')
+            .select('internships.activities_plan')
+            .select('internships.report');
+        console.log(internships);
+        return internships;
+    }
+    async update({ request, params }) {
+        const internship = await Internship_1.default.find(params.id);
+        internship.student_id = request.input('student_id');
+        internship.company_id = request.input('company_id');
+        internship.teacher_id = request.input('teacher_id');
+        internship.supervisor = request.input('supervisor');
+        internship.initial_date = request.input('initial_date');
+        internship.final_date = request.input('final_date');
+        internship.wage = request.input('wage');
+        internship.aid = request.input('aid');
+        internship.health_insurance_code = request.input('health_insurance_code');
+        internship.health_insurance_company = request.input('health_insurance_company');
+        internship.weekly_working_hours = request.input('weekly_working_hours');
+        internship.category = request.input('category');
+        internship.modality = request.input('modality');
+        internship.activities_plan = request.input('activities_plan');
+        internship.report = request.input('report');
+        internship.status = request.input('status');
+        await internship.save();
+        return internship;
+    }
+    async destroy({ params }) {
+        const internship = await Internship_1.default.find(params.id);
+        await internship.delete();
+        return {
+            message: 'Internship deleted',
+            data: internship,
+        };
+    }
+}
+exports.default = InternshipsController;
+//# sourceMappingURL=InternshipsController.js.map
